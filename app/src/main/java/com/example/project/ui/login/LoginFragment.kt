@@ -15,6 +15,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.example.project.databinding.FragmentLoginBinding
 
 import com.example.project.R
@@ -22,7 +23,7 @@ import com.example.project.R
 class LoginFragment : Fragment() {
 
     private lateinit var loginViewModel: LoginViewModel
-private var _binding: FragmentLoginBinding? = null
+    private var _binding: FragmentLoginBinding? = null
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -33,20 +34,25 @@ private var _binding: FragmentLoginBinding? = null
         savedInstanceState: Bundle?
     ): View? {
 
-      _binding = FragmentLoginBinding.inflate(inflater, container, false)
-      return binding.root
+        _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        return binding.root
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        view.findViewById<Button>(R.id.register).setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        }
+        //osy zherde buttonga deistvie berip turmyn
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
 
         val usernameEditText = binding.username
         val passwordEditText = binding.password
         val loginButton = binding.login
-        val loadingProgressBar = binding.loading
+//        val loadingProgressBar = binding.loading
 
         loginViewModel.loginFormState.observe(viewLifecycleOwner,
             Observer { loginFormState ->
@@ -65,7 +71,7 @@ private var _binding: FragmentLoginBinding? = null
         loginViewModel.loginResult.observe(viewLifecycleOwner,
             Observer { loginResult ->
                 loginResult ?: return@Observer
-                loadingProgressBar.visibility = View.GONE
+//                loadingProgressBar.visibility = View.GONE
                 loginResult.error?.let {
                     showLoginFailed(it)
                 }
@@ -103,7 +109,7 @@ private var _binding: FragmentLoginBinding? = null
         }
 
         loginButton.setOnClickListener {
-            loadingProgressBar.visibility = View.VISIBLE
+//            loadingProgressBar.visibility = View.VISIBLE
             loginViewModel.login(
                 usernameEditText.text.toString(),
                 passwordEditText.text.toString()
@@ -112,10 +118,13 @@ private var _binding: FragmentLoginBinding? = null
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {
-        val welcome = getString(R.string.welcome) + model.displayName
-        // TODO : initiate successful logged in experience
-        val appContext = context?.applicationContext ?: return
-        Toast.makeText(appContext, welcome, Toast.LENGTH_LONG).show()
+//        val welcome = getString(R.string.welcome) + model.displayName
+//        // TODO : initiate successful logged in experience
+//        val appContext = context?.applicationContext ?: return
+//        Toast.makeText(appContext, welcome, Toast.LENGTH_LONG).show()
+
+        findNavController().navigate(R.id.action_loginFragment_to_profileFragment)
+
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {
@@ -123,7 +132,7 @@ private var _binding: FragmentLoginBinding? = null
         Toast.makeText(appContext, errorString, Toast.LENGTH_LONG).show()
     }
 
-override fun onDestroyView() {
+    override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
