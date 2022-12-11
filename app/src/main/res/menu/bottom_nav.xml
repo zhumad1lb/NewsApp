@@ -5,9 +5,9 @@
         android:title="News"
         android:icon="@drawable/ic_baseline_menu_book_24"/>
     <item
-        android:id="@+id/homeFragment"
-        android:title="Home"
-        android:icon="@drawable/ic_baseline_home_24"/>
+        android:id="@+id/addpostFragment"
+        android:title="Add post"
+        android:icon="@drawable/ic_baseline_add_circle_24"/>
     <item
         android:id="@+id/profileFragment"
         android:title="Profile"
