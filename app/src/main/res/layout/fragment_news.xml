@@ -7,54 +7,10 @@
     android:layout_height="match_parent"
     tools:context=".NewsFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="NEWS"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:padding="10dp"
-        android:textAlignment="center"/>
-
-
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_margin="10dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:layout_gravity="center_vertical"
-        android:columnCount="2"
-        android:rowCount="2">
-
-        <EditText
-            android:id="@+id/editText"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Search"
-            android:padding="10dp"
-            android:layout_column="0"
-            android:layout_columnWeight="1"
-            android:layout_row="0"
-            android:inputType="textPersonName"
-            android:text="Name"/>
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:drawableRight="@drawable/ic_baseline_search_24"
-            android:paddingRight="20dp"
-            android:layout_row="0"
-            android:text="Button"/>
-    </GridLayout>
-
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="5dp"
-        android:id="@+id/recycleView"/>
+        android:id="@+id/recyclerView"/>
 
 </LinearLayout>
